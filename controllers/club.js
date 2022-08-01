@@ -55,4 +55,26 @@ exports.deleteClub=async(req,res)=>{
      return res.status(400).json({error})
     })
 
+},
+exports.getOneClub=async(req,res)=>{
+    const id=req.params.id;
+    Club.findOne({_id:id})
+    .then((club)=>{
+        return res.status(203).json({club})
+    }
+    )
+    .catch((error)=>{
+     return res.status(400).json({error})
+    })
+},
+exports.getAllClubs=(req,res)=>{
+    Club.find()
+
+.then((clubs)=>{
+    return res.status(203).json({clubs})
+}
+)
+.catch((error)=>{
+ return res.status(400).json({error})
+})
 }

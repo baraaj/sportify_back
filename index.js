@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
-mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://baraa:admin@cluster0.cxqyjam.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=> {
