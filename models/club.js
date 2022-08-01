@@ -7,7 +7,7 @@ const club=mongoose.Schema({
          },
          num_tel:{
             type:String,
-            required:true,
+             
          },
          activité:{
             type:String,
@@ -17,18 +17,18 @@ const club=mongoose.Schema({
             type:String,
             required:true,
          },
-        horraire:{
+        horaire:{
             type:String,
             required:true,
          },
          nom_entraineur:{
             type:String,
-            required:true,
+             
          },
          logo:{
             type:String,
-            required:false,
-         },
+             
+         }
 
 });
 module.exports=mongoose.model('Club',club);
