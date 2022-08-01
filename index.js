@@ -1,7 +1,8 @@
 const express=require('express')
 const PORT=3000
-const app=express()
+const app=express();
 const mongoose=require('mongoose');
+const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
 mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?retryWrites=true&w=majority',{
@@ -14,7 +15,7 @@ mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?
 });
 app.use(bodyParser.json());
 app.use('/clubs',RouteClubs)
- 
+app.use(cors({origin:'http://localhost:3000'}));
 app.listen(PORT,()=>{
     console.log('Serveur demarré  PORT',PORT)
 })

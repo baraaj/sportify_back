@@ -1,3 +1,4 @@
+const club = require('../models/club');
 const Club=require('../models/club');
 const ObjectID=require('mongoose').Types.ObjectId;
 
@@ -13,7 +14,7 @@ exports.ajoutClub=(req,res)=>{
    .catch((error)=>{
     return res.status(400).json({error})
    })
-}
+},
 exports.updateClub=(req,res)=>{
     if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown :"+req.params.id);
@@ -35,6 +36,21 @@ exports.updateClub=(req,res)=>{
  
  
     })
+    .catch((error)=>{
+     return res.status(400).json({error})
+    })
+
+},
+exports.deleteClub=async(req,res)=>{
+    if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown :"+req.params.id);
+    club.findByIdAndRemove(
+        req.params.id,
+
+    ).then(()=>{
+        return res.status(203).json("deleted club")
+    }
+    )
     .catch((error)=>{
      return res.status(400).json({error})
     })

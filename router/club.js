@@ -4,5 +4,5 @@
 
 router.post('/',ClubCtrl.ajoutClub);
 router.put("/:id",ClubCtrl.updateClub);
-
+router.delete("/:id",ClubCtrl.deleteClub);
  module.exports=router;
