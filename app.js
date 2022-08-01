@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
-mongoose.connect('mongodb+srv://baraa:admin@cluster0.cxqyjam.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=> {
@@ -16,7 +16,8 @@ mongoose.connect('mongodb+srv://baraa:admin@cluster0.cxqyjam.mongodb.net/?retryW
 app.use(bodyParser.json());
 app.use('/clubs',RouteClubs)
 app.use(cors({origin:'http://localhost:3000'}));
-app.listen(PORT,()=>{
+/*app.listen(PORT,()=>{
     console.log('Serveur demarré  PORT',PORT)
-})
+})*/
+//server.listen(process.env.PORT||3000);
 module.exports=app;

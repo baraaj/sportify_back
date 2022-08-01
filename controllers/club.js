@@ -2,7 +2,6 @@ const club = require('../models/club');
 const Club=require('../models/club');
 const ObjectID=require('mongoose').Types.ObjectId;
 
-
 exports.ajoutClub=(req,res)=>{
    const cl=new Club(req.body);
    cl.save()
