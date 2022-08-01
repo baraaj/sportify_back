@@ -31,4 +31,4 @@ const club=mongoose.Schema({
          },
 
 });
-module.exports=mongoose.model('/club',club);
+module.exports=mongoose.model('Club',club);
