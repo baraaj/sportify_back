@@ -28,6 +28,12 @@ const club=mongoose.Schema({
          logo:{
             type:String,
              
+         },
+         region:{
+            type:String,
+         },
+         governement:{
+            type:String,
          }
 
 });

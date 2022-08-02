@@ -4,8 +4,9 @@ const ObjectID=require('mongoose').Types.ObjectId;
 
 
 
-exports.ajoutClub=(req,res)=>{
-   const cl=new Club(req.body);
+exports.ajoutClub=(req,res,next)=>{
+    delete req.body._id;
+   const cl=new Club(...req.body);
    cl.save()
     
    .then((club)=>{
@@ -43,7 +44,12 @@ exports.updateClub=(req,res)=>{
     })
 
 },
-exports.deleteClub=async(req,res)=>{
+exports.modif=(req,res,next)=>{
+Club.updateOne({_id:req.params.id},{...req.body,_id:req.params.id})
+.then(()=>res.status(200).json({message:'Objet modifié'}))
+.catch(error=>res.status(200).json({error}))
+},
+exports.deleteClub=async(req,res,next)=>{
     if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown :"+req.params.id);
     club.findByIdAndRemove(
@@ -58,7 +64,7 @@ exports.deleteClub=async(req,res)=>{
     })
 
 },
-exports.getOneClub=async(req,res)=>{
+exports.getOneClub=async(req,res,next)=>{
     const id=req.params.id;
     Club.findOne({_id:id})
     .then((club)=>{
@@ -69,7 +75,7 @@ exports.getOneClub=async(req,res)=>{
      return res.status(400).json({error})
     })
 },
-exports.getAllClubs=(req,res)=>{
+exports.getAllClubs=(req,res,next)=>{
     Club.find()
 
 .then((clubs)=>{
