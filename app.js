@@ -5,6 +5,7 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
+const RouteGov=require('./router/gouv');
 const userRoutes=require('./router/user');
 
 app.use((req, res, next) => {
@@ -23,11 +24,9 @@ mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?
 });
 app.use(express.json());
 app.use(bodyParser.json());
+app.use('/api/gouv',RouteGov);
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
-/*app.listen(PORT,()=>{
-    console.log('Serveur demarré  PORT',PORT)
-})*/
-//server.listen(process.env.PORT||3000);
+
 module.exports=app;

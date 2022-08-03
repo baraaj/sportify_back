@@ -1,4 +1,4 @@
-const Club=require('../models/club');
+const Club=require('../models/Club');
 const ObjectID=require('mongoose').Types.ObjectId;
 
 
@@ -51,7 +51,7 @@ Club.updateOne({_id:req.params.id},{...req.body,_id:req.params.id})
 exports.deleteClub=async(req,res,next)=>{
     if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown :"+req.params.id);
-    club.findByIdAndRemove(
+    Club.findByIdAndRemove(
         req.params.id,
 
     ).then(()=>{
@@ -84,7 +84,7 @@ exports.getAllClubs=(req,res,next)=>{
 .catch((error)=>{
  return res.status(400).json({error})
 })
-}
+},
 exports.getClubByRegion=async(req,res,next)=>{
     let filter={}
     if(req.query.regions){
@@ -99,13 +99,16 @@ exports.getClubByRegion=async(req,res,next)=>{
 }
 exports.getClubByGovernement=async(req,res,next)=>{
     let filter={}
-    if(req.query.governements){
+    if(req.query.gouvernements){
       
-         const filter={governement:req.query.governements.split(',')}
+          filter={gouvernement:req.query.gouvernements.split(',')}
     }
-         const clubList=await Club.find({filter}).populate('governement');
+         const clubList=await Club.find(filter).populate('gouvernement');
 
          if(!clubList){
             res.status(500).json({success:false})
          }
+         res.status(203).json({clubList})
+
+
 }

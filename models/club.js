@@ -30,12 +30,14 @@ const club=mongoose.Schema({
              
          },
          region:{
-            type:String,
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Region'
+            
              
          },
          gouvernement:{
             type:mongoose.Schema.Types.ObjectId,
-            ref:'Gouvernement'
+            ref:'Gouvernement',
             
 
          }
