@@ -31,9 +31,12 @@ const club=mongoose.Schema({
          },
          region:{
             type:String,
+            required:true,
          },
          governement:{
             type:String,
+            required:true,
+
          }
 
 });

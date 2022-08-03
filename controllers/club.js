@@ -1,4 +1,3 @@
-const club = require('../models/club');
 const Club=require('../models/club');
 const ObjectID=require('mongoose').Types.ObjectId;
 
@@ -18,7 +17,7 @@ exports.ajoutClub=(req,res,next)=>{
     return res.status(400).json({error})
    })
 },
-exports.updateClub=(req,res)=>{
+exports.updateClub=(req,res,next)=>{
     if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown :"+req.params.id);
     const updatedClub={
