@@ -86,3 +86,27 @@ exports.getAllClubs=(req,res,next)=>{
  return res.status(400).json({error})
 })
 }
+exports.getClubByRegion=async(req,res,next)=>{
+    let filter={}
+    if(req.query.regions){
+      
+         const filter={region:req.query.regions.split(',')}
+    }
+         const clubList=await Club.find({filter}).populate('region');
+
+         if(!clubList){
+            res.status(500).json({success:false})
+         }
+}
+exports.getClubByGovernement=async(req,res,next)=>{
+    let filter={}
+    if(req.query.governements){
+      
+         const filter={governement:req.query.governements.split(',')}
+    }
+         const clubList=await Club.find({filter}).populate('governement');
+
+         if(!clubList){
+            res.status(500).json({success:false})
+         }
+}

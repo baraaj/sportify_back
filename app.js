@@ -21,7 +21,7 @@ mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?
     console.log(error);
 });
 app.use(express.json());
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use('/clubs',RouteClubs)
 app.use(cors({origin:'http://localhost:3000'}));
 /*app.listen(PORT,()=>{
