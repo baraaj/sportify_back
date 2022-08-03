@@ -4,8 +4,8 @@ const ObjectID=require('mongoose').Types.ObjectId;
 
 
 exports.ajoutClub=(req,res,next)=>{
-    delete req.body._id;
-   const cl=new Club(...req.body);
+    
+   const cl=new Club(req.body);
    cl.save()
     
    .then((club)=>{

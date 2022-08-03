@@ -31,11 +31,12 @@ const club=mongoose.Schema({
          },
          region:{
             type:String,
-            required:true,
+             
          },
-         governement:{
-            type:String,
-            required:true,
+         gouvernement:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Gouvernement'
+            
 
          }
 
