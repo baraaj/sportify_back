@@ -89,9 +89,9 @@ exports.getClubByRegion=async(req,res,next)=>{
     let filter={}
     if(req.query.regions){
       
-         const filter={region:req.query.regions.split(',')}
+        filter={region:req.query.regions.split(',')}
     }
-         const clubList=await Club.find({filter}).populate('region');
+         const clubList=await Club.find(filter).populate('region');
 
          if(!clubList){
             res.status(500).json({success:false})
