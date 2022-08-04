@@ -17,10 +17,6 @@ const club=mongoose.Schema({
             type:String,
             required:true,
          },
-        horaire:{
-            type:String,
-            required:true,
-         },
          nom_entraineur:{
             type:String,
              
@@ -29,6 +25,7 @@ const club=mongoose.Schema({
             type:String,
              
          },
+
          region:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Region'
@@ -40,7 +37,14 @@ const club=mongoose.Schema({
             ref:'Gouvernement',
             
 
+         },
+         temps:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Temps',
+            
+
          }
+          
 
 });
 module.exports=mongoose.model('Club',club);
