@@ -112,3 +112,19 @@ exports.getClubByGovernement=async(req,res,next)=>{
 
 
 }
+exports.createClub = (req, res, next) => {
+    //const clubObject = JSON.parse(req.body.club);
+    //delete clubObject._id;
+    //delete clubObject._userId;
+    const club = new Club({
+        ...req.body,
+        
+        //userId: req.auth.userId,
+    //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    
+    });
+  
+    club.save()
+    .then(() => { res.status(201).json({message: 'Club enregistré !'})})
+    .catch(error => { res.status(400).json( { error })})
+ };

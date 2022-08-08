@@ -6,12 +6,13 @@
 
 
  //router.post('/',auth,multer/ClubCtrl.ajoutClub);
-router.post('/',multer,ClubCtrl.ajoutClub);
+//router.post('/',ClubCtrl.ajoutClub);
+router.post('/',multer,ClubCtrl.createClub);
 router.put("/:id",ClubCtrl.updateClub);
 router.delete("/:id",ClubCtrl.deleteClub);
 router.get("/:id",ClubCtrl.getOneClub);
 router.get("/",ClubCtrl.getAllClubs);
 //router.get("/",ClubCtrl.getClubByRegion);
 router.get("/",ClubCtrl.getClubByGovernement);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+
  module.exports=router;
