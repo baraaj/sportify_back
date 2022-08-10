@@ -32,6 +32,7 @@ app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
 //app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/uploads',express.static('uploads'));
 app.use(morgan('dev'));
 
 module.exports=app;
