@@ -8,6 +8,8 @@ const RouteClubs=require('./router/club');
 const RouteGov=require('./router/gouv');
 const userRoutes=require('./router/user');
 const path = require('path');
+const morgan=require('morgan');
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,6 +31,7 @@ app.use('/api/gouv',RouteGov);
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
-app.use('/images', express.static(path.join(__dirname, 'images')));
+//app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(morgan('dev'));
 
 module.exports=app;

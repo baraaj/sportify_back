@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Club=require('../models/Club');
 const ObjectID=require('mongoose').Types.ObjectId;
 
@@ -114,16 +115,23 @@ exports.getClubByGovernement=async(req,res,next)=>{
 }
 exports.createClub = (req, res, next) => {
     //const clubObject = JSON.parse(req.body.club);
-    //delete clubObject._id;
+   // delete clubObject._id;
     //delete clubObject._userId;
+    
     const club = new Club({
-        ...req.body,
+         _id:new mongoose.Types.ObjectId(),
         
+         nom_club:req.body.nom_club,
+         num_tel:req.body.num_tel,
+         activite:req.body.activite,
+         emplacement:req.body.emplacement,
+         nom_entraineur:req.body.nom_entraineur,
+         logo:req.file.path,
         //userId: req.auth.userId,
     //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     
     });
-  
+  console.log(req.file);
     club.save()
     .then(() => { res.status(201).json({message: 'Club enregistré !'})})
     .catch(error => { res.status(400).json( { error })})

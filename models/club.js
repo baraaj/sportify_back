@@ -9,7 +9,7 @@ const club=mongoose.Schema({
             type:String,
              
          },
-         activité:{
+         activite:{
             type:String,
             required:true,
          },
@@ -25,8 +25,17 @@ const club=mongoose.Schema({
             type:String,
              
          },
+        region:{
+            type:String,
+            
+         },
+        gouvernement:{
+            type:String,
+         
+             
+         },
 
-         region:{
+        /* region:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Region'
             
@@ -43,7 +52,8 @@ const club=mongoose.Schema({
             ref:'Temps',
             
 
-         }
+         }*/
+
           
 
 });

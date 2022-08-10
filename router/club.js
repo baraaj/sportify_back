@@ -1,10 +1,9 @@
  const express=require('express');
  const auth=require('../middleware/auth');
- const multer = require('../middleware/multer-config');
  const router=express.Router();
  const ClubCtrl=require('../controllers/club');
-
-
+const multer=require(  '../middleware/multer-config');
+ 
  //router.post('/',auth,multer/ClubCtrl.ajoutClub);
 //router.post('/',ClubCtrl.ajoutClub);
 router.post('/',multer,ClubCtrl.createClub);
