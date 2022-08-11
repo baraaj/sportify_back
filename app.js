@@ -5,7 +5,6 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
-const RouteGov=require('./router/gouv');
 const userRoutes=require('./router/user');
 const path = require('path');
 const morgan=require('morgan');
@@ -27,11 +26,9 @@ mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?
 });
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/api/gouv',RouteGov);
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
-//app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/uploads',express.static('uploads'));
 app.use(morgan('dev'));
 

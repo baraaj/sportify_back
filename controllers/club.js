@@ -24,11 +24,11 @@ exports.updateClub=(req,res,next)=>{
     const updatedClub={
         nom_club:req.body.nom_club,
         num_tel:req.body.num_tel,
-        activité:req.body.activité,
+        activite:req.body.activite,
         emplacement:req.body.emplacement,
         horaire:req.body.horaire,
         nom_entraineur:req.body.nom_entraineur,
-        logo:req.body.logo,
+        logo:req.file.path,
     };
     Club.findByIdAndUpdate(
         req.params.id,
@@ -87,22 +87,23 @@ exports.getAllClubs=(req,res,next)=>{
 })
 },
 exports.getClubByRegion=async(req,res,next)=>{
-    let filter={}
-    if(req.query.regions){
-      
-        filter={region:req.query.regions.split(',')}
-    }
-         const clubList=await Club.find(filter).populate('region');
-
-         if(!clubList){
-            res.status(500).json({success:false})
-         }
-}
+     
+        
+       
+            const clubList = await Club.find({region:req.params.region.split(',')}).populate('region');
+            if(!clubList){
+                res.status(500).json({success:false})
+             }
+             else{
+                res.status(203).json({clubList})
+             }
+            };
+ 
 exports.getClubByGovernement=async(req,res,next)=>{
-    let filter={}
-    if(req.query.gouvernements){
+     let filter;
+    if(req.params.gouvernement){
       
-          filter={gouvernement:req.query.gouvernements.split(',')}
+           filter={gouvernement:req.params.gouvernement.split(',')}
     }
          const clubList=await Club.find(filter).populate('gouvernement');
 
@@ -112,7 +113,15 @@ exports.getClubByGovernement=async(req,res,next)=>{
          res.status(203).json({clubList})
 
 
-}
+};
+exports.findByAct=async(req, res, next)=>{
+   
+    const clubList = await Club.find({activite:req.params.activite.split(',')}).populate('activite');
+    if(!clubList){
+        res.status(500).json({success:false})
+    }
+      res.status(203).json({clubList})
+};
 exports.createClub = (req, res, next) => {
     //const clubObject = JSON.parse(req.body.club);
    // delete clubObject._id;
@@ -126,12 +135,14 @@ exports.createClub = (req, res, next) => {
          activite:req.body.activite,
          emplacement:req.body.emplacement,
          nom_entraineur:req.body.nom_entraineur,
+         region:req.body.region,
+         gouvernement:req.body.gouvernement,
          logo:req.file.path,
         //userId: req.auth.userId,
     //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     
     });
-  console.log(req.file);
+  
     club.save()
     .then(() => { res.status(201).json({message: 'Club enregistré !'})})
     .catch(error => { res.status(400).json( { error })})

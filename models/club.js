@@ -23,30 +23,19 @@ const club=mongoose.Schema({
          },
          logo:{
             type:String,
-             
+            required:true, 
          },
         region:{
             type:String,
-            
+            required:true,
          },
         gouvernement:{
             type:String,
-         
              
+            required:true, 
          },
 
-        /* region:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Region'
-            
-             
-         },
-         gouvernement:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Gouvernement',
-            
-
-         },
+      /*
          temps:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Temps',
