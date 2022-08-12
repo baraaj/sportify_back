@@ -23,7 +23,7 @@ const club=mongoose.Schema({
          },
          logo:{
             type:String,
-            required:true, 
+            
          },
         region:{
             type:String,
@@ -35,14 +35,15 @@ const club=mongoose.Schema({
             required:true, 
          },
 
-      /*
-         temps:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Temps',
-            
+      
+        temps:{
+            type:mongoose.Schema.Types.Array,
+            ref:"temps",
+            default:null,
+            trim:true,
 
-         }*/
-
+         }
+          
           
 
 });
