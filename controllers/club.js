@@ -28,7 +28,7 @@ exports.updateClub=(req,res,next)=>{
         emplacement:req.body.emplacement,
         horaire:req.body.horaire,
         nom_entraineur:req.body.nom_entraineur,
-        logo:req.file.path,
+        //logo:req.file.path,
     };
     Club.findByIdAndUpdate(
         req.params.id,
@@ -75,8 +75,8 @@ exports.getOneClub=async(req,res,next)=>{
      return res.status(400).json({error})
     })
 },
-exports.getAllClubs=(req,res,next)=>{
-    Club.find()
+exports.getAllClubs=async(req,res,next)=>{
+    const clubs=await Club.find()
 
 .then((clubs)=>{
     return res.status(203).json({clubs})

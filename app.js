@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     next();
   });
 mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?retryWrites=true&w=majority',{
+    
     useNewUrlParser:true,
     useUnifiedTopology:true
 }).then(()=> {

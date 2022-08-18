@@ -6,11 +6,11 @@ const club=mongoose.Schema({
             required:true,
          },
          num_tel:{
-            type:String,
-             
+            type:[String],
+            default:null,
          },
          activite:{
-            type:String,
+            type:[String],
             required:true,
          },
         emplacement:{
@@ -19,6 +19,7 @@ const club=mongoose.Schema({
          },
          nom_entraineur:{
             type:String,
+            default:null,
              
          },
          logo:{
@@ -27,7 +28,7 @@ const club=mongoose.Schema({
          },
         region:{
             type:String,
-            required:true,
+            default:null, 
          },
         gouvernement:{
             type:String,
