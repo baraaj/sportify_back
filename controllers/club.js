@@ -28,7 +28,7 @@ exports.updateClub=(req,res,next)=>{
         emplacement:req.body.emplacement,
         horaire:req.body.horaire,
         nom_entraineur:req.body.nom_entraineur,
-        //logo:req.file.path,
+        logo:req.file.path,
     };
     Club.findByIdAndUpdate(
         req.params.id,
@@ -116,7 +116,8 @@ exports.getClubByGovernement=async(req,res,next)=>{
 };
 exports.findByAct=async(req, res, next)=>{
    
-    const clubList = await Club.find({activite:req.params.activite.split(',')}).populate('activite');
+    const clubList = await Club.find({activite:req.params.activite}).populate('activite');
+   
     if(!clubList){
         res.status(500).json({success:false})
     }
@@ -138,7 +139,7 @@ exports.createClub = (req, res, next) => {
          region:req.body.region,
          gouvernement:req.body.gouvernement,
          temps:req.body.temps,
-        // logo:req.file.path,
+        logo:req.file.path,
         //userId: req.auth.userId,
     //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     
