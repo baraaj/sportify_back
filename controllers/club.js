@@ -29,6 +29,9 @@ exports.updateClub=(req,res,next)=>{
         horaire:req.body.horaire,
         nom_entraineur:req.body.nom_entraineur,
         logo:req.file.path,
+        temps:JSON.parse(req.body.temps),
+        region:req.body.region,
+         gouvernement:req.body.gouvernement,
     };
     Club.findByIdAndUpdate(
         req.params.id,
@@ -124,10 +127,6 @@ exports.findByAct=async(req, res, next)=>{
       res.status(203).json({clubList})
 };
 exports.createClub = (req, res, next) => {
-    //const clubObject = JSON.parse(req.body.club);
-   // delete clubObject._id;
-    //delete clubObject._userId;
-    
     const club = new Club({
          _id:new mongoose.Types.ObjectId(),
         
@@ -140,8 +139,6 @@ exports.createClub = (req, res, next) => {
          gouvernement:req.body.gouvernement,
          temps:JSON.parse(req.body.temps),
         logo:req.file.path,
-        //userId: req.auth.userId,
-    //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     
     });
   
