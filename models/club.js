@@ -39,13 +39,31 @@ const club=mongoose.Schema({
          },
 
       
-        temps:{
-            type:mongoose.Schema.Types.Array,
-            ref:"temps",
-            default:null,
-            trim:true,
+       // temps:{
+            //type:mongoose.Schema.Types.Array,
+           //ref:"temp",
+           
+           // default:null,
+            //trim:true,
+          /*  type:[{
+               jour:{type:String},
+               horaire:{type:String}
 
-         }
+            }],}*/
+           
+          temps:  [
+            {
+                jour: {
+                    type: String,
+                    required : true,
+                },
+                horaire: {
+                    type: String,
+                    required : true, // required informs for missing fields
+                }
+            }
+        ],
+         
           
           
 
