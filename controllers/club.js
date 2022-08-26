@@ -138,7 +138,7 @@ exports.createClub = (req, res, next) => {
          nom_entraineur:req.body.nom_entraineur,
          region:req.body.region,
          gouvernement:req.body.gouvernement,
-         temps:req.body.temps,
+         temps:JSON.parse(req.body.temps),
         logo:req.file.path,
         //userId: req.auth.userId,
     //logo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
