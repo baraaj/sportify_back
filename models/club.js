@@ -55,13 +55,14 @@ const club=mongoose.Schema({
             {
                 jour: {
                     type: String,
-                    required : true,
+                    default:null
                 },
                 horaire: {
                     type: String,
-                    required : true, // required informs for missing fields
+                    default:null, // required informs for missing fields
                 }
             }
+            
         ],
          
           

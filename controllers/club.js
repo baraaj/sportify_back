@@ -47,7 +47,9 @@ exports.updateClub=(req,res,next)=>{
     })
 
 },
-exports.modif=(req,res,next)=>{
+ 
+
+exports.updatedClub=(req,res,next)=>{
 Club.updateOne({_id:req.params.id},{...req.body,_id:req.params.id})
 .then(()=>res.status(200).json({message:'Objet modifié'}))
 .catch(error=>res.status(200).json({error}))
