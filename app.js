@@ -37,6 +37,7 @@ app.use('/api/events',eventsRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
 app.use('/uploads',express.static('uploads'));
 app.use('/uploadsevent',express.static('uploadsevent'));
+app.use('/uploadsnews',express.static('uploadsnews'));
 //app.use(morgan('dev'));
 
 module.exports=app;
