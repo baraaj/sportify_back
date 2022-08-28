@@ -4,7 +4,6 @@ const fs=require('fs')
 const multer=require('multer')
 const path=require('path');
 const { extname } = require('path');
-const { eventNames } = require('../models/News');
 var ObjectId = require('mongodb').ObjectId;
 var news=[];
 
@@ -28,9 +27,9 @@ const show=(req, res, next)=>{
 const store=(req,res,next)=>{
     let e=new News();
     {if(req.file && req.file.originalname)
-        {e=new Club({...req.body,image:req.file.filename}, { strict: false });
+        {e=new News({...req.body,Image:req.file.path}, { strict: false });
        }
-        else{e=new Club({...req.body}, { strict: false });
+        else{e=new News({...req.body}, { strict: false });
         }}
     e.save()
      
@@ -47,7 +46,7 @@ const store=(req,res,next)=>{
 //Find by id et mettre à jour des clubs
 const update=(req, res, next)=>{
   if((req.file && req.file.originalname))
-        News.updateOne({ _id: req.params.id }, { ...req.body,image:req.file.filename, _id: req.params.id })
+        News.updateOne({ _id: req.params.id }, { ...req.body,image:req.file.path, _id: req.params.id })
           .then(() => res.status(200).json({ message: 'News updated with image successfully !'}))
           .catch(error => res.status(400).json({ error }));
     else{

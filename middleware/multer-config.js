@@ -1,23 +1,22 @@
+
 const multer = require('multer');
- 
- const fileFilter=(req,file,callback)=>{
-  if(file.mimetype==='image/jpeg' ||file.mimetype==='image/jpg' ||file.mimetype==='image/png'){callback(null,true) }
-  else{
-    callback(null,false)
-   }
-  
- };
+
+const MIME_TYPES = {
+  'image/jpg': 'jpg',
+  'image/jpeg': 'jpeg',
+  'image/png': 'png'
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, './uploads');
+    callback(null, '../controllers/images');
   },
   filename: (req, file, callback) => {
     const name = file.originalname.split(' ').join('_');
-    //const extension = MIME_TYPES[file.mimetype];
-    callback(null,  Date.now().toString()+ file.originalname );
+    const extension = MIME_TYPES[file.mimetype];
+    callback(null, name + Date.now() + '.' + extension);
   }
 });
+const upload=multer({storage:storage})
 
-
-module.exports = multer({storage: storage,fileFilter:fileFilter,limits:{fieldSize:1024*1024*5}}).single('logo');
+module.exports = multer({storage: storage}).single('images');

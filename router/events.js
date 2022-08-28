@@ -1,9 +1,17 @@
-const express=require('express');
-const auth=require('../middleware/auth');
-const router=express.Router();
-const EventsController=require('../controllers/events');
-const multer=require(  '../middleware/multer-config');
-
+const express=require('express')
+const router=express.Router()
+const EventsController=require('../controllers/events')
+const multer = require('multer');
+const images = multer({dest: '../uploadsevent/'})
+const path=require('path');
+const Storage = multer.diskStorage({
+  destination: "uploadsevent",
+  filename: (req, file, callback) => {
+    const name = file.originalname.split(' ').join('_');
+    callback(null,Date.now()+'_'+name);
+  }
+});
+const upload=multer({storage:Storage}).single('Image');
 
 router.get('/',EventsController.index)
 router.get('/showevents/:id',EventsController.show)
@@ -13,11 +21,4 @@ router.delete('/deleteevent/:id',EventsController.destroy)
 
 
 
-
-
-
-
-
-
-
-module.exports=router;
+module.exports =router

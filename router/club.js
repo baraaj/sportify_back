@@ -2,12 +2,21 @@
  const auth=require('../middleware/auth');
  const router=express.Router();
  const ClubCtrl=require('../controllers/club');
-const multer=require(  '../middleware/multer-config');
- 
+const multer = require('multer');
+const images = multer({dest: '../uploads/'})
+const path=require('path');
+const Storage = multer.diskStorage({
+  destination: "uploads",
+  filename: (req, file, callback) => {
+    const name = file.originalname.split(' ').join('_');
+    callback(null,Date.now()+'_'+name);
+  }
+});
+const upload=multer({storage:Storage}).single('logo');
  //router.post('/',auth,multer/ClubCtrl.ajoutClub);
 //router.post('/',ClubCtrl.ajoutClub);
-router.post('/',multer,ClubCtrl.createClub);
-router.put("/:id",multer,ClubCtrl.updateClub);
+router.post('/',upload,ClubCtrl.createClub);
+router.put("/:id",upload,ClubCtrl.updateClub);
 router.delete("/:id",ClubCtrl.deleteClub);
 router.get("/:id",ClubCtrl.getOneClub);
 router.get("/",ClubCtrl.getAllClubs);

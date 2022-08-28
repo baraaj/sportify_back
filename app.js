@@ -7,9 +7,11 @@ const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
 const userRoutes=require('./router/user');
 const newsRoutes=require('./router/news');
+const eventsRoutes=require('./router/events');
 const path = require('path');
 const morgan=require('morgan');
 
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,9 +32,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
-app.use('/api/news/',newsRoutes);
+app.use('/api/news',newsRoutes);
+app.use('/api/events',eventsRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
 app.use('/uploads',express.static('uploads'));
-app.use(morgan('dev'));
+app.use('/uploadsevent',express.static('uploadsevent'));
+//app.use(morgan('dev'));
 
 module.exports=app;

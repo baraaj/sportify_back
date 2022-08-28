@@ -16,7 +16,7 @@ const club=mongoose.Schema({
          },
         emplacement:{
             type:String,
-            required:true,
+             
             default:null, 
          },
          nom_entraineur:{

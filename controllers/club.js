@@ -1,8 +1,11 @@
 const { default: mongoose } = require('mongoose');
 const Club=require('../models/Club');
 const ObjectID=require('mongoose').Types.ObjectId;
-
-
+const storage=require('../middleware/multer-config')
+const fs=require('fs')
+const multer=require('multer')
+const path=require('path');
+var clubs=[];
 
 exports.ajoutClub=(req,res,next)=>{
     
