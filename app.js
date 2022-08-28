@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
-app.use('/api/news')
+app.use('/api/news',newsRoutes);
 app.use(cors({origin:'http://localhost:3000'}));
 app.use('/uploads',express.static('uploads'));
 app.use(morgan('dev'));
