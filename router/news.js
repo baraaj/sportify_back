@@ -7,8 +7,8 @@ const multer=require(  '../middleware/multer-config');
 
 router.get('/',NewsController.index)
 router.get('/shownews/:id',NewsController.show)
-router.post('/stornews',upload,NewsController.store)
-router.put('/updatenews/:id',upload,NewsController.update)
+router.post('/stornews',multer,NewsController.store)
+router.put('/updatenews/:id',multer,NewsController.update)
 router.delete('/deletenews/:id',NewsController.destroy)
 
 
