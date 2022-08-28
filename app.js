@@ -6,6 +6,7 @@ const cors=require('cors');
 const bodyParser=require('body-parser');
 const RouteClubs=require('./router/club');
 const userRoutes=require('./router/user');
+const newsRoutes=require('/router/news');
 const path = require('path');
 const morgan=require('morgan');
 
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api/clubs',RouteClubs);
 app.use('/api/auth',userRoutes);
+app.use('/api/news')
 app.use(cors({origin:'http://localhost:3000'}));
 app.use('/uploads',express.static('uploads'));
 app.use(morgan('dev'));
