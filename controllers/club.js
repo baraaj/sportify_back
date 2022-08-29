@@ -6,6 +6,95 @@ const fs=require('fs')
 const multer=require('multer')
 const path=require('path');
 var clubs=[];
+exports.indexactivty=(req,res,next)=>{
+    if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
+    {Club.find({$and: [{ Gouvernement: req.params.gouvernement},{Region: req.params.region }]})
+    .then((clubs)=>{
+      const a=[];
+      
+     // console.log(clubs);
+   clubs.map((c)=> {
+      c.Activite.map((act)=>{a.push(act);
+          })
+          
+  })
+    const b=[...new Set(a)];
+    res.status(200).json(b)
+  })
+  .catch((error)=>{
+   return res.status(400).json({error})
+  })
+       } 
+       else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
+         Club.find({ Gouvernement: req.params.gouvernement})
+         .then((clubs)=>{
+          const a=[];
+          
+         // console.log(clubs);
+       clubs.map((c)=> {
+          c.Activite.map((act)=>{a.push(act);
+              })
+              
+      })
+        const b=[...new Set(a)];
+        res.status(200).json(b)
+      })
+      .catch((error)=>{
+       return res.status(400).json({error})
+      })
+      
+       }
+       else {
+       
+        Club.find()
+        .then((clubs)=>{
+          const a=[];
+          
+         // console.log(clubs);
+       clubs.map((c)=> {
+          c.Activite.map((act)=>{a.push(act);
+              })
+              
+      })
+        const b=[...new Set(a)];
+        res.status(200).json(b)
+      })
+      .catch((error)=>{
+       return res.status(400).json({error})
+      })
+       }
+  }
+  const index=(req,res,next)=>{
+      Club.find()
+  
+  .then((clubs)=>{
+    
+    res.status(200).json(clubs)
+  })
+  .catch((error)=>{
+   return res.status(400).json({error})
+  })
+  }
+  //Club par activité
+exports.findByAct=(req, res, next)=>{
+    if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
+    {Club.find({$and: [{ Gouvernement: req.params.gouvernement},{Region: req.params.region },{ Activite:{ $all : [req.params['activite']] } }]})
+    .then(club => res.status(200).json(club))
+    .catch(error => res.status(404).json({ error }));
+  }
+  else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
+    Club.find({$and:[{ Gouvernement: req.params.gouvernement},{ Activite:{ $all : [req.params['activite']] } }]})
+   
+    .then(club => res.status(200).json(club))
+    .catch(error => res.status(404).json({ error }));
+  }
+  else{
+    Club.find({ Activite:{ $all : [req.params['activite']] } })
+    .then(club => res.status(200).json(club))
+    .catch(error => res.status(404).json({ error }));
+  }
+  
+  }
 
 exports.ajoutClub=(req,res,next)=>{
     
