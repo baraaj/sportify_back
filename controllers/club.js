@@ -77,23 +77,23 @@ exports.indexactivty=(req,res,next)=>{
   }
   //Club par activité
 exports.findByAct=(req, res, next)=>{
-    if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
-    {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region },{ activite:{ $all : [req.params['activite']] } }]})
-    .then(club => res.status(200).json(club))
-    .catch(error => res.status(404).json({ error }));
-  }
-  else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
-    Club.find({$and:[{ gouvernement: req.params.gouvernement},{ activite:{ $all : [req.params['activite']] } }]})
-   
-    .then(club => res.status(200).json(club))
-    .catch(error => res.status(404).json({ error }));
-  }
-  else{
-    Club.find({ activite:{ $all : [req.params['activite']] } })
-    .then(club => res.status(200).json(club))
-    .catch(error => res.status(404).json({ error }));
-  }
-  
+  if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
+  {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region },{ activite:{ $all : [req.params['activite']] } }]})
+  .then(club => res.status(200).json(club))
+  .catch(error => res.status(404).json({ error }));
+}
+else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
+  Club.find({$and:[{ gouvernement: req.params.gouvernement},{ activite:{ $all : [req.params['activite']] } }]})
+ 
+  .then(club => res.status(200).json(club))
+  .catch(error => res.status(404).json({ error }));
+}
+else{
+  Club.find({ Activite:{ $all : [req.params['activite']] } })
+  .then(club => res.status(200).json(club))
+  .catch(error => res.status(404).json({ error }));
+}
+
   }
 
 exports.ajoutClub=(req,res,next)=>{
@@ -222,15 +222,7 @@ exports.findByGovernement=async(req,res,next)=>{
 
 
 };
-exports.findByAct=async(req, res, next)=>{
-   
-    const clubList = await Club.find({activite:req.params.activite}).populate('activite');
-   
-    if(!clubList){
-        res.status(500).json({success:false})
-    }
-      res.status(203).json({clubList})
-};
+
 exports.createClub = (req, res, next) => {
     const club = new Club({
          _id:new mongoose.Types.ObjectId(),
