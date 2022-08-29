@@ -8,13 +8,13 @@ const path=require('path');
 var clubs=[];
 exports.indexactivty=(req,res,next)=>{
     if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
-    {Club.find({$and: [{ Gouvernement: req.params.gouvernement},{Region: req.params.region }]})
+    {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region }]})
     .then((clubs)=>{
       const a=[];
       
      // console.log(clubs);
    clubs.map((c)=> {
-      c.Activite.map((act)=>{a.push(act);
+      c.activite.map((act)=>{a.push(act);
           })
           
   })
@@ -26,13 +26,13 @@ exports.indexactivty=(req,res,next)=>{
   })
        } 
        else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
-         Club.find({ Gouvernement: req.params.gouvernement})
+         Club.find({ gouvernement: req.params.gouvernement})
          .then((clubs)=>{
           const a=[];
           
          // console.log(clubs);
        clubs.map((c)=> {
-          c.Activite.map((act)=>{a.push(act);
+          c.activite.map((act)=>{a.push(act);
               })
               
       })
@@ -52,7 +52,7 @@ exports.indexactivty=(req,res,next)=>{
           
          // console.log(clubs);
        clubs.map((c)=> {
-          c.Activite.map((act)=>{a.push(act);
+          c.activite.map((act)=>{a.push(act);
               })
               
       })
@@ -78,18 +78,18 @@ exports.indexactivty=(req,res,next)=>{
   //Club par activité
 exports.findByAct=(req, res, next)=>{
     if ((req.params.region!=="null")&&(req.params.gouvernement!=="null"))
-    {Club.find({$and: [{ Gouvernement: req.params.gouvernement},{Region: req.params.region },{ Activite:{ $all : [req.params['activite']] } }]})
+    {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region },{ activite:{ $all : [req.params['activite']] } }]})
     .then(club => res.status(200).json(club))
     .catch(error => res.status(404).json({ error }));
   }
   else if ((req.params.region==="null")&&(req.params.gouvernement!=="null")) {
-    Club.find({$and:[{ Gouvernement: req.params.gouvernement},{ Activite:{ $all : [req.params['activite']] } }]})
+    Club.find({$and:[{ gouvernement: req.params.gouvernement},{ activite:{ $all : [req.params['activite']] } }]})
    
     .then(club => res.status(200).json(club))
     .catch(error => res.status(404).json({ error }));
   }
   else{
-    Club.find({ Activite:{ $all : [req.params['activite']] } })
+    Club.find({ activite:{ $all : [req.params['activite']] } })
     .then(club => res.status(200).json(club))
     .catch(error => res.status(404).json({ error }));
   }
