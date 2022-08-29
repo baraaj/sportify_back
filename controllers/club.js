@@ -64,7 +64,7 @@ exports.indexactivty=(req,res,next)=>{
       })
        }
   }
-  const index=(req,res,next)=>{
+  exports.index=(req,res,next)=>{
       Club.find()
   
   .then((clubs)=>{
@@ -195,8 +195,19 @@ exports.getClubByRegion=async(req,res,next)=>{
                 res.status(203).json({clubList})
              }
             };
- 
-exports.getClubByGovernement=async(req,res,next)=>{
+//Club par gouvernement
+exports.getClubByGovernement=(req, res, next)=>{
+    if ((req.params.region!=="null"))
+    {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region }]})
+       .then(club => res.status(200).json(club))
+       .catch(error => res.status(404).json({ error }));} 
+       else {
+         Club.find({$or: [{ gouvernement: req.params.gouvernement}]})
+       .then(club => res.status(200).json(club))
+       .catch(error => res.status(404).json({ error }));
+       }
+ }
+exports.findByGovernement=async(req,res,next)=>{
      let filter;
     if(req.params.gouvernement){
       
