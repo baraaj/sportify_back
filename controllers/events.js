@@ -47,7 +47,7 @@ const store=(req,res,next)=>{
 //Find by id et mettre à jour des clubs
 const update=(req, res, next)=>{
   if((req.file && req.file.originalname))
-        Events.updateOne({ _id: req.params.id }, { ...req.body,Image:req.file.filename, _id: req.params.id })
+        Events.updateOne({ _id: req.params.id }, {...req.body,Image:req.file.filename, _id: req.params.id })
           .then(() => res.status(200).json({ message: 'Event updated with Image successfully !'}))
           .catch(error => res.status(400).json({ error }));
     else{

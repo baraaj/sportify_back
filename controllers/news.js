@@ -27,7 +27,7 @@ const show=(req, res, next)=>{
 const store=(req,res,next)=>{
     let e=new News();
     {if(req.file && req.file.originalname)
-        {e=new News({...req.body,Image:req.file.path}, { strict: false });
+        {e=new News({...req.body,Image:req.file.filename}, { strict: false });
        }
         else{e=new News({...req.body}, { strict: false });
         }}
@@ -43,10 +43,10 @@ const store=(req,res,next)=>{
     })
  }
 
-//Find by id et mettre à jour des clubs
+//Find by id et mettre à jour des news
 const update=(req, res, next)=>{
   if((req.file && req.file.originalname))
-        News.updateOne({ _id: req.params.id }, { ...req.body,image:req.file.path, _id: req.params.id })
+        News.updateOne({ _id: req.params.id }, { ...req.body,Image:req.file.filename, _id: req.params.id })
           .then(() => res.status(200).json({ message: 'News updated with image successfully !'}))
           .catch(error => res.status(400).json({ error }));
     else{
