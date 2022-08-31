@@ -24,6 +24,6 @@ router.get("/",ClubCtrl.getAllClubs);
 //router.get("/find/gouvernement/:gouvernement",ClubCtrl.getClubByGovernement);
 router.get('/activity/:gouvernement/:region',ClubCtrl.indexactivty);
 router.get('/find/:activite/:gouvernement/:region',ClubCtrl.findByAct)
-router.get('/findByGouvernement/:gouvernement/:region',ClubCtrl.findByGovernement)
+router.get('/findgouvernement/:gouvernement/:region',ClubCtrl.findByGouv)
 
  module.exports=router;

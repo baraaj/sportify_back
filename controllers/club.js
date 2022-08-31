@@ -207,6 +207,18 @@ exports.getClubByGovernement=(req, res, next)=>{
        .catch(error => res.status(404).json({ error }));
        }
  }
+ //Club par gouvernement
+exports.findByGouv=(req, res, next)=>{
+  if ((req.params.region!=="null"))
+  {Club.find({$and: [{ gouvernement: req.params.gouvernement},{region: req.params.region }]})
+     .then(club => res.status(200).json(club))
+     .catch(error => res.status(404).json({ error }));} 
+     else {
+       Club.find({$or: [{ gouvernement: req.params.gouvernement}]})
+     .then(club => res.status(200).json(club))
+     .catch(error => res.status(404).json({ error }));
+     }
+}
 exports.findByGovernement=async(req,res,next)=>{
      let filter;
     if(req.params.gouvernement){
